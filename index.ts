@@ -1,4 +1,5 @@
 import Server from "./classes/server";
+import express from 'express';
 import { SERVER_PORT } from "./global/environment";
 import router from "./routes/router";
 import bodyParser from 'body-parser';
@@ -9,6 +10,7 @@ const server = Server.instance;
 server.app.use(bodyParser.urlencoded({extended: true}));
 server.app.use(bodyParser.json());
 server.app.use(cors({origin: true, credentials: true}));
+server.app.use(express.static('public'));
 server.app.use('/', router);
 server.start(() => {
     console.log(`Server running on port: ${SERVER_PORT}`);
