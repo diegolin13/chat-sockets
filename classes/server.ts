@@ -22,14 +22,15 @@ export default class Server {
         return this._instance || (this._instance = new this());
     }
 
-    escucharSockets() {
-        this.io.on('connection', () => {
-            console.log('Listening sockets...')
+    private escucharSockets() {
+        console.log('escuchando sockets');
+        this.io.on('connect', () => {
+            console.log('Listening sockets...');
             console.log('New client connected');
         });
     }
 
     start(callback: any) {
-        this.app.listen(this.port, callback);
+        this.httpServer.listen(this.port, callback);
     }
 }
