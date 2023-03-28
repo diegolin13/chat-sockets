@@ -31,13 +31,16 @@ export default class Server {
             socket.addNewUser(cliente.id);
 
             // Desconectar
-            socket.desconectar(cliente);
+            socket.desconectar(cliente, this.io);
 
             // Recibir mensaje
             socket.mensaje(cliente, this.io);
 
             // Registrar Usuario
             socket.loginWs(cliente, this.io);
+
+            // ObtenerUsuarios
+            socket.getUsers(cliente, this.io);
         });
     }
 
