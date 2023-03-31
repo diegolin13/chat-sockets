@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsnd --respawn --transpile-only index.ts",
     "prod": "npm i && tsc && node dist/index.js",
-    "start": "npm i && tsc && node dist/index.js"
+    "start": "npm i && node dist/index.js"
   },
   "author": "",
   "license": "ISC",
