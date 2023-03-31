@@ -28,7 +28,7 @@ export const loginWs = (cliente: Socket, io: socketIO.Server) => {
         io.emit('active-users', listaUsuarios.getLista());
         callback({
             ok: true,
-            resp: "Usuario: " + payload.nombre + " " + "recibido"
+            resp: "Usuario: " + payload.nombre + " " + "recibido",
         });
     });
 }
