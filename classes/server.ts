@@ -41,6 +41,12 @@ export default class Server {
 
             // ObtenerUsuarios
             socket.getUsers(cliente, this.io);
+
+            //Mensajes privados
+            socket.privateMessage(cliente, this.io);
+
+            // notificaciones
+            socket.updateNotifications(cliente);
         });
     }
 

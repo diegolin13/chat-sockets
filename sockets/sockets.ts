@@ -44,3 +44,18 @@ export const getUsers = (cliente: Socket, io: socketIO.Server) => {
         io.to(cliente.id).emit('active-users', listaUsuarios.getLista());
     });
 }
+
+export const privateMessage = (cliente: Socket, io: socketIO.Server) => {
+    cliente.on('private-message', (payload) => {
+        payload['idFrom'] = cliente.id;
+       payload.to.push(cliente.id);
+       io.in(payload.to).emit('mensaje-nuevo', payload);
+    });
+}
+
+
+export const updateNotifications = (cliente: Socket) => {
+    cliente.on('update-notificaciones', (payload) => {
+        listaUsuarios.updateNotificaciones(payload.id, payload.notificaciones);
+    });
+}

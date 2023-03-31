@@ -55,4 +55,15 @@ export class UsuariosLista {
     }
 
 
+    public updateNotificaciones(id: string, notificaciones: number) {
+        this.lista.forEach((user: any) => {
+            if(user.id === id) {
+                user.notificaciones = notificaciones;
+            }
+        });
+
+        console.log(this.lista);
+    }
+
+
 }
