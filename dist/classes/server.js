@@ -45,12 +45,20 @@ class Server {
     escucharSockets() {
         console.log('escuchando sockets');
         this.io.on('connect', cliente => {
-            console.log('Listening sockets...');
-            console.log('New client connected');
+            // agregar a lista de usuarios conectados el cliente
+            socket.addNewUser(cliente.id);
             // Desconectar
-            socket.desconectar(cliente);
+            socket.desconectar(cliente, this.io);
             // Recibir mensaje
-            socket.mensaje(cliente);
+            socket.mensaje(cliente, this.io);
+            // Registrar Usuario
+            socket.loginWs(cliente, this.io);
+            // ObtenerUsuarios
+            socket.getUsers(cliente, this.io);
+            //Mensajes privados
+            socket.privateMessage(cliente, this.io);
+            // notificaciones
+            socket.updateNotifications(cliente);
         });
     }
     start(callback) {
